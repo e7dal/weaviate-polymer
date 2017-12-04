@@ -1,0 +1,45 @@
+<!--                                                                         
+                 ▝       ▗              ▝▜                   ▗  
+▖  ▖ ▄▖  ▄▖ ▗ ▗ ▗▄   ▄▖ ▗▟▄  ▄▖      ▄▖  ▐   ▄▖ ▗▄▄  ▄▖ ▗▗▖ ▗▟▄ 
+▚▗▗▘▐▘▐ ▝ ▐ ▝▖▞  ▐  ▝ ▐  ▐  ▐▘▐     ▐▘▐  ▐  ▐▘▐ ▐▐▐ ▐▘▐ ▐▘▐  ▐  
+▐▟▟ ▐▀▀ ▗▀▜  ▙▌  ▐  ▗▀▜  ▐  ▐▀▀  ▀▘ ▐▀▀  ▐  ▐▀▀ ▐▐▐ ▐▀▀ ▐ ▐  ▐  
+ ▌▌ ▝▙▞ ▝▄▜  ▐  ▗▟▄ ▝▄▜  ▝▄ ▝▙▞     ▝▙▞  ▝▄ ▝▙▞ ▐▐▐ ▝▙▞ ▐ ▐  ▝▄ 
+                                                                             
+https://github.com/ING-Internet-of-Things/weaviate-element
+-->
+
+<!—- WEAVIATE ID:  weaviate.meta.get -—>
+<!—- DESCRIPTION: Gives meta information about the server and can be used to provide information to another Weaviate instance that wants to interact with the current instance. -—>
+
+<!—- THIS DOCUMENT IS AUTO GENERATED, UPDATE THE GENERATOR FILE TO CHANGE IT —->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../weaviate-element.html">
+
+<dom-module id="weaviate-element-weaviate.meta.get">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <content></content>
+    <iron-ajax auto url="/weaviate/v1/meta" handle-as="json" last-response="{{response}}" on-response="onResponse" id="xhr"></iron-ajax>
+ </template>
+  <script>
+      Polymer({
+        is: "weaviate-element-weaviate.meta.get",
+        properties: {
+          
+          response: {
+            type: String
+          }
+        },
+        onResponse: function(response){
+          var result = response.detail.response;
+          this.fire('set-data', result)
+        }
+      })
+  </script>
+</dom-module>
