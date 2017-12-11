@@ -1,0 +1,44 @@
+<!--                                                                         
+                 ▝       ▗              ▝▜                   ▗  
+▖  ▖ ▄▖  ▄▖ ▗ ▗ ▗▄   ▄▖ ▗▟▄  ▄▖      ▄▖  ▐   ▄▖ ▗▄▄  ▄▖ ▗▗▖ ▗▟▄ 
+▚▗▗▘▐▘▐ ▝ ▐ ▝▖▞  ▐  ▝ ▐  ▐  ▐▘▐     ▐▘▐  ▐  ▐▘▐ ▐▐▐ ▐▘▐ ▐▘▐  ▐  
+▐▟▟ ▐▀▀ ▗▀▜  ▙▌  ▐  ▗▀▜  ▐  ▐▀▀  ▀▘ ▐▀▀  ▐  ▐▀▀ ▐▐▐ ▐▀▀ ▐ ▐  ▐  
+ ▌▌ ▝▙▞ ▝▄▜  ▐  ▗▟▄ ▝▄▜  ▝▄ ▝▙▞     ▝▙▞  ▝▄ ▝▙▞ ▐▐▐ ▝▙▞ ▐ ▐  ▝▄ 
+                                                                             
+https://github.com/ING-Internet-of-Things/weaviate-element
+-->
+
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="weaviate-item">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    [[value]]
+  </template>
+  <script>
+      Polymer({
+        is: 'weaviate-item',
+        properties: {
+          value: {
+            notify: true,
+            type: String
+          },
+          key: {
+            type: String
+          },
+        },
+        ready: function(){
+          var thisElement = this;
+          addEventListener('set-data', function(e) {
+            if(thisElement.key in e.detail){
+              thisElement.value = e.detail[thisElement.key];
+            }
+          });
+        }
+      })
+  </script>
+</dom-module>

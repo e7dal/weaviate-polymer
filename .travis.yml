@@ -1,0 +1,36 @@
+dist: trusty
+sudo: required
+services:
+  - docker
+addons:
+  firefox: latest
+  chrome: stable
+language: node_js
+node_js: "lts/boron"
+install: echo "no install, should happen in before script"
+before_script:
+  - npm --version
+  - docker --version
+  - docker run hello-world
+  - svn --version
+  - npm install -g yarn
+  - yarn --version
+  - mkdir ~/tryweaviate
+  - cd ~/tryweaviate
+  - wget -q -O Dockerfile https://raw.githubusercontent.com/e7dal/weaviate/master/docker/Dockerfile
+  - wget -q -O run-services.sh https://raw.githubusercontent.com/e7dal/weaviate/master/docker/run-services.sh
+  - sed -i 's/# set -x/set -x/' run-services.sh
+  - sudo bash run-services.sh
+  - sudo docker ps -a
+  - sudo docker exec -it weaviate cat /var/weaviate/first_run.log
+  - cd -
+  - GET_ROOTKEY=$(docker exec -it weaviate grep -s ROOTKEY /var/weaviate/first_run.log|sed 's/.*ROOTKEY=//')
+  - curl -H  "X-API-KEY: $GET_ROOTKEY"  -X GET "http://127.0.0.1:8070/weaviate/v1/meta" -H  "accept: application/json" > meta.json
+  - wc meta.json
+  - yarn global add polymer-cli
+  - polymer --version
+  - polymer analyze
+  - polymer install
+ 
+script:
+  - xvfb-run polymer test
