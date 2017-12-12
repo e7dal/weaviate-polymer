@@ -1,6 +1,4 @@
-[![Build Status](https://travis-ci.org/creativesoftwarefdn/weaviate-polymer.svg?branch=master)](https://travis-ci.org/creativesoftwarefdn/weaviate-polymer)
-
-
+[![Build Status](https://travis-ci.org/e7dal/weaviate-polymer.svg?branch=develop)](https://travis-ci.org/e7dal/weaviate-polymer)
 
 # [weaviate-element](https://github.com/ING-Internet-of-Things/weaviate-element)
 
