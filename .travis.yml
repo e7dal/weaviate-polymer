@@ -26,7 +26,7 @@ before_script:
   - "polymer analyze"
   - "polymer install"
 dist: trusty
-install: "echo \"no install, should happen in before script\""
+install: "echo \"no install,should happen in before script\""
 language: node_js
 node_js: lts/boron
 script: 
