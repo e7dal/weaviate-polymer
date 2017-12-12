@@ -18,7 +18,7 @@ before_script:
   - "sudo docker ps -a"
   - "sudo docker exec -it weaviate cat /var/weaviate/first_run.log"
   - "cd -"
-  - "GET_ROOTKEY=$(docker exec -it weaviate grep -s ROOTKEY /var/weaviate/first_run.log|sed 's/.*ROOTKEY=//')"
+  - "GET_ROOTKEY=$(docker exec -it weaviate cat /var/weaviate/first_run.log|grep -s ROOTKEY|sed 's/.*ROOTKEY=//')"
   - "curl -H \"X-API-KEY: $GET_ROOTKEY\" -X GET \"http://127.0.0.1:8070/weaviate/v1/meta\" -H  \"accept: application/json\" > meta.json"
   - "wc meta.json"
   - "yarn global add polymer-cli"
