@@ -24,7 +24,7 @@ before_script:
   - "echo $ROOTKEY > ROOTKEY.TXT"
   - "cat ROOTKEY.TXT"
   - "set +x"
-  - "curl -H \"X-API-KEY: $ROOTKEY\" -X GET \"http://127.0.0.1:8070/weaviate/v1/meta\" -H  \"accept: application/json\"" 
+  - "curl -H \"X-API-KEY:`cat ROOTKEY.TXT`\" -X GET \"http://127.0.0.1:8070/weaviate/v1/meta\" -H  \"accept: application/json\"" 
   - "npm install -g polymer-cli"
   - "polymer --version"
   - "polymer analyze"
